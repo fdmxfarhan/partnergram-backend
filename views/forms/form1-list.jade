@@ -1,20 +1,17 @@
 doctype html
-
-html
+html(lang="en")
     head
         title partnergram
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
         link(rel="shortcut icon", href="/img/logo.png", type="image/x-icon")
         script(src="/js/jquery-3.5.1.min.js")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        link(rel='stylesheet', href='/css/home.css')
-        link(rel='stylesheet', href='/css/components/footer.css')
-    body
-        .mocup-view 
-            img(src="/img/mockup.png")
-        .
-        include 
-        script.
-            document.getElementById('vid').play();
-
-
+        link(rel='stylesheet', href='/css/forms.css')
+    body 
+        .black-modal
+        .form-view 
+            -for(var i=0; i<forms.length; i++){
+                .link 
+                    a(href="/form1-view?formID=#{forms[i]._id}")= forms[i].fullname
+            -}
+        script(src="/js/forms.js")

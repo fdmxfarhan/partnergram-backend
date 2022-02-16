@@ -38,19 +38,22 @@ block content
             -}
             
     -}
-    .sibche
-        img(src="/img/logo.png", alt="logo")
     .register
-        h1.title 
-            i.fa.fa-sign-in
-            | ورود
+        .line
+            h1.title 
+                i.fa.fa-sign-in
+                | ورود
         form(action="/users/login" id="register" method="POST")
             .text-input-area
-                input.textinput(type="text" placeholder="کد پرسنل" name="username" value= "#{ typeof uname != 'undefined' ? uname: '' }")
-                i.fa.fa-user
+                label(for="username")
+                    i.fa.fa-user
+                    |  نام کاربری
+                input.textinput(type="text" placeholder="شماره تلفن/ایمیل" name="username" value= "#{ typeof uname != 'undefined' ? uname: '' }")
             .text-input-area
+                label(for="password")
+                    i.fa.fa-key
+                    | کلمه عبور
                 input.textinput(type="password" placeholder="رمز عبور" name="password" value= "#{ typeof psw != 'undefined' ? psw: '' }")
-                i.fa.fa-key
             .text-input-area
                 button.submit(type="submit") ورود
             //- a.link(href="/users/register") هنوز ثبت نام نکرده اید؟

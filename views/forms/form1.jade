@@ -1,0 +1,70 @@
+doctype html
+html(lang="en")
+    head
+        title partnergram
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(rel="shortcut icon", href="/img/logo.png", type="image/x-icon")
+        script(src="/js/jquery-3.5.1.min.js")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/css/forms.css')
+    body 
+        .black-modal
+        .form-view 
+            .line
+                h1.title فرم سلطه پذیری
+            form(action="/form1" method="POST") 
+                .text-input-area 
+                    label(for="fullname") نام و نام خانوادگی: 
+                    input.textinput(type="text" name="fullname" placeholder="نام و نام خانوادگی")
+                .select-input-view 
+                    label(for="city") محل سکونت: 
+                    .select 
+                        select(id="city" name="city") 
+                            -for(var i=0; i<cities.length; i++)
+                                option(value="#{cities[i].fa}")= cities[i].fa
+                .select-input-view 
+                    label(for="gender") جنسیت: 
+                    .select 
+                        select(id="gender" name="gender") 
+                            -for(var i=0; i<gender.length; i++)
+                                option(value="#{gender[i].fa}")= gender[i].fa
+                .select-input-view 
+                    label(for="orientation") گرایش: 
+                    .select 
+                        select(id="orientation" name="orientation") 
+                            -for(var i=0; i<orientations.length; i++)
+                                option(value="#{orientations[i].fa}") #{orientations[i].fa} - #{orientations[i].description}
+                h1.name نقش‌های مورد علاقه: 
+                    .add-btn#add-role
+                        i.fa.fa-plus 
+                        | افزودن نقش
+                .roles-view#roles-view
+                h1.name مواردی که موجب لذت شما می‌شود را انتخاب کنید.
+                .check-inputs-view 
+                    -for(var i=actions.length-1; i>=0; i--){
+                        .check-input
+                            input(type="checkbox" name="actions" id="actions-#{i}" value="#{actions[i].name}")
+                            label(for="actions-#{i}") 
+                                .title= actions[i].en + (actions[i].fa == '' ? '' : ' (') + actions[i].fa + (actions[i].fa == '' ? '' : ')') + ': '
+                                .description= actions[i].description
+                    -}
+                h1.name اسباب بازی های مورد علاقه خود را انتخاب کنید.
+                .check-inputs-view 
+                    -for(var i=0; i<toys.length; i++){
+                        .check-input
+                            input(type="checkbox" name="toys" id="toys-#{i}" value="#{toys[i].name}")
+                            label(for="toys-#{i}") 
+                                .title= toys[i].en + (toys[i].fa == '' ? '' : ' (') + toys[i].fa + (toys[i].fa == '' ? '' : ')') + ': '
+                                .description= toys[i].description
+                    -}
+                button.submit(type="submit") ثبت
+        #roles-length.hidden= roles.length
+        .select-popup#select-role
+            .scroll-view
+                -for(var i=0; i<roles.length; i++){
+                    .item(id="role-select-#{i}")
+                        .name(id="role-name-#{i}")= roles[i].en
+                        .description= roles[i].description
+                -}
+                //- https://sexualalpha.com/bdsm-punishment-ideas/
+        script(src="/js/forms.js")

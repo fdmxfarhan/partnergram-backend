@@ -1,0 +1,67 @@
+doctype html
+html(lang="en")
+    head
+        title partnergram
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(rel="shortcut icon", href="/img/logo.png", type="image/x-icon")
+        script(src="/js/jquery-3.5.1.min.js")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/css/forms.css')
+    body 
+        .black-modal
+        .form-view 
+            .line
+                h1.title فرم سلطه پذیری
+            .info 
+                .name نام و نام خانوادگی: 
+                .value= form.fullname
+            .info 
+                .name جنسیت: 
+                .value= form.gender
+            .info 
+                .name محل سکونت: 
+                .value= form.city
+            .info 
+                .name گرایش: 
+                .value= form.orientation
+            
+            h1.name نقش‌های مورد علاقه: 
+            .roles-view#roles-view
+                -for(var i=0; i<form.roles.length; i++)
+                    .role= form.roles[i]
+            h1.name بازی‌های مورد علاقه:
+            .check-inputs-view 
+                -for(var i=actions.length-1; i>=0; i--){
+                    .check-output
+                        .check
+                            -if(form.actions.indexOf(actions[i].name))
+                                i.fa.fa-times.red 
+                            -else
+                                i.fa.fa-check.green 
+                        .value
+                            .title= actions[i].en + (actions[i].fa == '' ? '' : ' (') + actions[i].fa + (actions[i].fa == '' ? '' : ')') + ': '
+                            .description= actions[i].description
+                -}
+            h1.name اسباب بازی‌های مورد علاقه:
+            .check-inputs-view 
+                -for(var i=0; i<toys.length; i++){
+                    .check-output
+                        .check
+                            -if(form.toys.indexOf(toys[i].name))
+                                i.fa.fa-times.red 
+                            -else
+                                i.fa.fa-check.green 
+                        .value
+                            .title= toys[i].en + (toys[i].fa == '' ? '' : ' (') + toys[i].fa + (toys[i].fa == '' ? '' : ')') + ': '
+                            .description= toys[i].description
+                -}
+        #roles-length.hidden= roles.length
+        .select-popup#select-role
+            .scroll-view
+                -for(var i=0; i<roles.length; i++){
+                    .item(id="role-select-#{i}")
+                        .name(id="role-name-#{i}")= roles[i].en
+                        .description= roles[i].description
+                -}
+                //- https://sexualalpha.com/bdsm-punishment-ideas/
+        script(src="/js/forms.js")
